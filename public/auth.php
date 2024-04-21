@@ -1,8 +1,24 @@
 <?php
 session_start();
 include('/var/www/html/project/modeles/front-data.php');
-
+$msg;
 if(isset($_POST['valider'])) {
+
+  
+if (empty($_POST['email'])) {
+  $msg="login obligatoire";
+  
+}
+
+if (empty($_POST['password'])) {
+  $msg1="password obligatoire";
+  
+}
+if(empty($_POST['email']) && empty($_POST['password'])){
+  $msg="login obligatoire";
+  $msg1="password obligatoire";
+  
+}
     $utilisateurs_correspondants = []; 
 
     foreach ($promotionaire as $personne) {
@@ -36,7 +52,7 @@ if(isset($_POST['valider'])) {
         exit();
     } else {
 
-        echo "Identifiants incorrects";
+        echo"";
     }
 }
 ?>
@@ -165,10 +181,25 @@ img{
           <div class="input">
              <form action="#" method="POST">
                    <input type="hidden"  name="form">
-                    <input type="text" readonly placeholder="Email et de Passe Requis"    style="background-color: salmon;"><br><br>
+                    <input type="text" readonly placeholder="______________________SE CONNECTER______________________"    style="background-color: #5b78f0"><br><br>
+                    
+
+         <?php if(isset($msg)): ?>
+              <div style="background-color: #fa8072; color: #333; padding: 10px; border: 1px solid #ccc;">
+               <?=$msg?>
+              </div>
+         <?php endif; ?>
+
+
+
                     <p>Email Addresse <b style="color: red;">*</b> </p><br>
 
                     <input type="text" placeholder="Email Addresse" name="email"><br><br>
+          <?php if(isset($msg1)): ?>
+              <div style="background-color: #fa8072; color: #333; padding: 10px; border: 1px solid #ccc;">
+               <?=$msg1?>
+              </div>
+         <?php endif; ?>
                     <p>Password <b style="color: red;">*</b> </p><br>
                     <input type="text"  name="password">
                  
