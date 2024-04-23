@@ -1,0 +1,187 @@
+@import url("./global.css");
+body{
+    overflow: visible;
+}
+header{
+    width: 100%;
+    min-height: 140px;
+}
+#bh-reference{ 
+    margin-bottom: 20px;
+}
+#bh-reference .first span{
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+#section-referentiel{
+    width: 100%;
+    min-height: 200px;
+    border: 1px solid white;
+    padding: 30px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    padding: 0;
+}
+.content-ref{
+    width: calc(100% - 300px);
+    min-height: 350px;
+    flex-wrap: wrap;
+    gap: 37px;
+    position: relative;
+    top: 108px;
+    left: 90px;
+}
+.box{
+    width: 210px;
+    height: 280px;
+    border-radius: var(--bordure-2);
+    box-shadow: var(--box-shadow-1);
+}
+.add-ref{
+    justify-content: flex-end;
+    width: 300px;
+    position: relative;
+    top: 51px;
+  
+    
+}
+.add-ref .box{ width: 290px; }
+.box .head{
+    height: 30px;
+    align-items: end;
+    display: flex;
+    padding-left: 20px;
+}
+.box .head .icon{ width: 20px; }
+.box .icon i{ font-size: 1.4em; }
+.box .head-content{
+    height: calc(100% - 30px);
+    border-radius: inherit;
+    align-items: center;
+    justify-content: center;
+}
+.box .head img{
+    height: 100%;
+    object-fit: cover;
+    margin-left: 20px;
+    cursor: pointer;
+}
+.box .head .icon{
+    cursor: pointer;
+}
+.box .head-content>div{ flex: 1; }
+.box .head-content .box-img{
+    height: 80%;
+    width: 90%;
+    margin-top: 10%;
+}
+.box .head-content .box-img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.box .head-content .info{
+    padding-top: 15px;
+    gap: 15px;
+    align-items: center;
+}
+.box .head-content .info div{
+    font-weight: 600;
+}
+.box .head-content .info .status{
+    color: var(--green);
+}
+.add-ref .head{
+    height: 50px;
+    font-size: 1.4em;
+    font-weight: bold;
+}
+.add-ref  .head-content{
+    height: 230px;
+    gap: 10px;
+    padding: 0 20px;
+}
+.add-ref  .head-content label,
+.add-ref  .head-content>div{
+    width: 100%;
+}
+.add-ref .group label{
+    margin-bottom: 5px;
+}
+.add-ref  .head-content .saisie{
+    position: relative;
+    min-height: 40px;
+
+}
+.add-ref  .head-content .saisie input,
+.add-ref  .head-content .saisie textarea{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    outline: 0;
+    border: 2px solid var(--grey);
+    padding-left: 30px;
+    font-size: 1em;
+}
+.add-ref  .head-content .saisie input::placeholder,
+.add-ref  .head-content .saisie textarea::placeholder{
+    font-size: 1.1em;
+    font-family: monospace;
+    font-style: normal;
+    color: var(--grey);
+}
+.add-ref  .head-content .saisie textarea::placeholder{
+    position: absolute;
+    top: 25%;
+}
+.add-ref  .head-content .box-icon{
+    position: absolute;
+    font-size: 1.5em;
+    height: 20px;
+    width: 20px;
+    top: 10px;
+    left: 5px;
+    color: var(--grey);
+    z-index: 1;
+}
+.add-ref .head-content button{
+    width: 80%;
+    height: 40px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--teal);
+    color: white;
+    font-weight: 700;
+}
+
+@media screen and (max-width:750px) {
+    #section-referentiel{
+        flex-direction: column-reverse;
+    }
+    .content-ref{
+        flex: 1;
+        width: 100%;
+        margin-top: 20px;
+    }
+    .box{
+        height: 300px;
+        background-color: aliceblue;
+    }
+    .add-ref{
+        flex: 1;
+    }
+}
+@media screen and (max-width:500px){
+    .content-ref{
+        padding-right: 10px;
+    }
+    .box{
+        width: 100%;
+    }
+    .box .head-content .box-img{
+        height: 150px;
+    }
+}

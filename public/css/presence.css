@@ -1,0 +1,175 @@
+
+.container{
+    display: flex;
+    height: 100vh;
+    width: 100vh;
+   
+}
+.left{
+    /* background-color: blue; */
+    height:40%;
+    width: 14%;
+display: inline;
+align-items: center;
+    
+}
+.space{
+    width: 2%;
+    background-color: whitesmoke;
+}
+
+.right{
+    background-color: white;
+    height: 100%;
+    width: 84%;
+    position: relative;
+    left: 80px;
+}
+.right-top{
+background-color: white;
+    height: 10%;
+    width: 90%;
+    padding: 1%;
+    flex-wrap: wrap;
+
+}
+.right-bas{
+    /* background-color: green; */
+        height: 82%;
+        width: 100%;
+}
+.interne{
+        height: 8%;
+        width: 100%;
+        padding: 2%;
+}
+.spanFin{
+    display: inline;
+    justify-content: end;
+    align-items: end;
+}
+.bas-top{
+    width: 173%;
+    height: 10%;
+    background-color: white;
+    padding: 1%;
+}
+.tableau{
+    width: 170%;
+    height: 80%;
+    margin-left: 3%;
+    background-color: white;
+}
+
+.tfoot{
+    width: 100%;
+    height: 10%;
+    background-color: beige;
+}
+button{
+    color: white;
+    background-color: green;
+    height: 4vh;
+    width: 8%;
+    border-radius: 8px;
+
+}
+select,input{
+    height: 4vh;
+    width: 8%;
+    border-radius: 8px;
+    background-color: white;
+    outline: none;
+}
+.pagine{
+    position: relative;
+    top: -54px; 
+    left: 75%;
+}
+
+
+
+
+    table {
+width: 100%;
+border-collapse: collapse;
+}
+
+tr, td {
+border: 0px solid black;
+padding: 10px;
+text-align: left;
+}
+
+tr{
+background-color: white;
+}
+ 
+.mat{
+    color: green;
+}
+
+.groupe{
+
+    margin: 10%;
+    margin-left: 28px;
+}
+.menu{
+/* background-color: black; */
+ height: 11%;
+ margin-top: 10%;
+}
+img{
+    margin-top: 10px;
+}
+
+.groupe {
+    display: flex;
+    align-items: center;
+}
+
+.groupe .icon {
+    margin-right: 5px; /* Espacement entre l'icône et le texte */
+}
+.texte {
+    margin-top: 12px; /* Ajustez cette valeur selon vos besoins pour descendre le texte */
+}
+.groupe:hover{
+    background-color: green;
+    color: white;
+    cursor: pointer;
+}
+.round{
+    height: 800px;
+    width: 800px;
+    border-radius: 100%;
+    background-color: gray;
+}
+a{
+    text-decoration: none;
+}
+
+
+
+
+.texte2{
+position: relative;      
+top: -11px; 
+
+}
+
+.super{
+position: relative;
+top: -27px;
+color: green;
+}
+
+.copy{
+position: relative;
+left: 620px;
+
+}
+.left:checked{
+position: relative;
+left: 100px;
+}

@@ -1,0 +1,228 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    background-color: whitesmoke;
+}
+
+
+
+.modal {
+display: none; /* Par défaut, masqué */
+position: fixed; /* Position fixée pour recouvrir l'écran */
+top: 0;
+left: 0;
+width: 100%;
+height: 200%;
+background-color: rgba(0,0,0,0.5); /* Fond semi-transparent */
+}
+.modal-content {
+background-color: white;
+margin: 15% auto;
+padding: 20px;
+border: 1px solid #888;
+width: 80%;
+height: 33%;
+max-width: 60%;
+}
+.close {
+color: #aaa;
+float: right;
+font-size: 28px;
+font-weight: bold;
+}
+.close:hover,
+.close:focus {
+color: black;
+text-decoration: none;
+cursor: pointer;
+}
+
+
+
+.container{
+    padding: 15px;
+}
+.tete{
+    height: 10vh;
+    width: 100%;
+    background-color: white;
+
+}
+.gap{
+    height: 2vh;
+}
+.gap1{
+    height: 4vh;
+}
+.bas{
+    height: 100vh;
+    /* background-color: red ; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.apprenant{
+    height: 5vh;
+}
+.cadre1{
+   height: 86%;
+   width: 90%;
+   border: solid 1px black;
+   border-top-color: transparent;
+   border-right-color: transparent;
+   border-bottom-color: transparent;
+}
+.boule{
+    height: 65px;
+    width: 65px;
+    border-radius: 50%;
+    background-color: green;
+    border: solid 1px;
+    position: relative;
+    position: relative;
+    left: -34px;
+    top: -32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.num{
+    color: white;
+    background-color: green;
+    font-size: 18px;
+}
+.app{
+    position: relative;
+    top: -77px;
+    left: 51px;
+    font-size: 18px;
+}
+
+
+.app1{
+    position: relative;
+    top: -33px;
+    left: 51px;
+    font-size: 18px;
+}
+
+.app2{
+    position: relative;
+    top: -101px;
+    left: 863px;
+    font-size: 18px;
+}
+.bar{
+    height: 10%;
+    width: 105%; 
+}
+.navbar{
+   border: solid 1px black;
+   height: 35px;
+   width: 100px;
+   background-color: green;
+   border-radius: 2px;
+   color: white;
+}
+form{
+    height: 80%;
+}
+.contenir{
+    height: 104%;
+    width: 96%;
+    border: solid 1px black;
+    border-bottom-color: transparent;
+    border-right-color: transparent;
+    border-left-color: transparent;
+}
+.cercle{
+    height: 50px;
+    width: 50px;
+    position: relative;
+    top: 15px;
+    left: -13px;
+    border-radius: 50%;
+    background-color: blue;  
+    
+}
+
+.cercle1{
+    height: 50px;
+    width: 50px;
+    position: relative;
+
+    top: -57px;
+    left: 791px;
+    border-radius: 50%;
+    background-color: green;  
+    
+}
+input{
+    height: 5vh;
+    width: 40%;
+   position: relative;
+   left: 69px;
+   margin: 15px;
+}
+.mybutton{
+    position: relative;
+    left: 938px;
+    height: 4vh;
+    color: white;
+}
+.cl{
+            height: 5vh;
+width: 40.5%;
+border: solid 1px black;
+position: relative;
+display: inline-block;
+margin-left: 81px;
+
+}
+#id{
+position: relative;
+left: 112px;
+}
+input[type="search"]{
+width: 98%;
+border-radius: 5px;
+}
+.tableau{
+ 
+width: 120%;
+height: 100%;
+margin: 17px;
+margin-left: 103px;
+
+}
+
+table {
+width: 100%;
+border-collapse: collapse;
+}
+
+tr, td {
+border: 0px solid black;
+padding: 20px;
+text-align: left;
+}
+
+tr{
+background-color: white;
+}
+img{
+ clear: both;
+ border-radius :10px
+   
+}
+.dd{
+    background-color:  #cdedfa ;
+}
+.left-span{
+position: relative;
+}
+.pagination{
+position: relative;
+left:1495px
+}

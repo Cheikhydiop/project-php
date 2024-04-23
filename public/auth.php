@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+  session_start();
+}
 include('/var/www/html/project/modeles/front-data.php');
 $msg;
 if(isset($_POST['valider'])) {
@@ -9,6 +11,14 @@ if (empty($_POST['email'])) {
   $msg="login obligatoire";
   
 }
+
+
+$valideEmail = '/^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/';
+
+if (!preg_match($valideEmail, $_POST['email']) && !empty($_POST["email"])) {
+  $msgM="mail incorrect";
+    
+} 
 
 if (empty($_POST['password'])) {
   $msg1="password obligatoire";
@@ -36,6 +46,7 @@ if(empty($_POST['email']) && empty($_POST['password'])){
     }
 
     if (!empty($utilisateurs_correspondants)) {
+      ob_start();
     
         $_SESSION['utilisateur'] = $utilisateurs_correspondants;
         $_SESSION['nom']=$nom; 
@@ -47,39 +58,16 @@ if(empty($_POST['email']) && empty($_POST['password'])){
         header("Location: http://www.cheikh.diop:8001/project/public/?page=presence");
         exit();
     } elseif($_POST['email'] == "admin" && $_POST['password']== "admin" ){
+      
         $_SESSION['connect'] = 1;
         header("Location: http://www.cheikh.diop:8001/project/public/?page=presence");
         exit();
     } else {
 
-        echo"";
+        $msg4="login ou password incorrect";
     }
 }
 ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 <!DOCTYPE html>
@@ -107,10 +95,6 @@ if(empty($_POST['email']) && empty($_POST['password'])){
       
     }
     
-  
-
-
-
     .my-div{
       width: 56%;
       height: 65%;
@@ -179,38 +163,37 @@ img{
             
             <div class="photos"><img src="logo.png" width="30%" alt=""></div>
           <div class="input">
-             <form action="#" method="POST">
+             <form action="" method="POST">
                    <input type="hidden"  name="form">
-                    <input type="text" readonly placeholder="______________________SE CONNECTER______________________"    style="background-color: #5b78f0"><br><br>
-                    
+                    <input type="text" readonly placeholder="______________________SE CONNECTER______________________" style="background-color: #5b78f0"><br><br>
 
-         <?php if(isset($msg)): ?>
+
+         <?php if(isset($msgM)): ?>
               <div style="background-color: #fa8072; color: #333; padding: 10px; border: 1px solid #ccc;">
-               <?=$msg?>
+               <?=$msgM?>
               </div>
          <?php endif; ?>
 
-
-
                     <p>Email Addresse <b style="color: red;">*</b> </p><br>
-
-                    <input type="text" placeholder="Email Addresse" name="email"><br><br>
-          <?php if(isset($msg1)): ?>
+                    <input type="text" placeholder="Email Addresse" name="email" value="<?= $_POST['email']?>"><br><br>
+        <?php if(isset($msg1)): ?>
               <div style="background-color: #fa8072; color: #333; padding: 10px; border: 1px solid #ccc;">
                <?=$msg1?>
               </div>
          <?php endif; ?>
                     <p>Password <b style="color: red;">*</b> </p><br>
-                    <input type="text"  name="password">
-                 
-                    
-         
+                    <input type="text"  name="password" >
+                  
           </div>
           <br>
           <div class="checkbox"> <input type="checkbox">  <i class="i">Remember me &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;mot passe oublier</i> </div><br>
-          <div class="button"><a href="#"><button type="submit" name="valider"><b>LOGIN</b></button></a></div>
+          <div class="button"><button type="submit" name="valider"><b>LOGIN</b></button></div>
           </form>
-
+          <?php if(isset($msg4)): ?>
+              <div style="background-color: #fa8072; color: #333; padding: 10px; border: 1px solid #ccc;">
+               <?=$msg4?>
+              </div>
+         <?php endif; ?>
           </div>
 
 

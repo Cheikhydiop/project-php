@@ -1,0 +1,46 @@
+{
+    "students": [
+      {
+        "mat": "P5_DEVID_2024_001",
+        "nom": "Nom1",
+        "prenom": "Prenom1",
+        "email": "nom1@example.com",
+        "genre": "M",
+        "tel": "771234567",
+        "day": "2005-05-09",
+        "referentiel": "web"
+      },
+      {
+        "mat": "P5_DEVDA_2024_002",
+        "nom": "Nom2",
+        "prenom": "Prenom2",
+        "email": "nom2@example.com",
+        "genre": "F",
+        "tel": "771234568",
+        "day": "2005-05-10",
+        "referentiel": "data"
+      }
+    ],
+    "referentiels": [
+      {
+        "libelle": "Référentiel Web",
+        "promo": "P5"
+      },
+      {
+        "libelle": "Référentiel Data",
+        "promo": "P5"
+      },
+      {
+        "libelle": "Référentiel  Digital",
+        "promo": "P5"
+      }
+    ],
+    "promotion": [
+      {
+        "libelle": "Promotion 5",
+        "promo": "P5",
+        "referentiels": ["web", "data", "refdig"]
+      }
+    ]
+  }
+  
