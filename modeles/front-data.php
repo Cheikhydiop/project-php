@@ -18,9 +18,6 @@ $dataRef=load_referents($file_path_referents);
 
 $dataPromo= load_promotions($file_path_promotions);
 
-
-
-// $csv_data = load_csv($file_path);
 $json_data = load_json($file_path);
 
 
@@ -284,9 +281,8 @@ function actuel2($d) {
 ?>
 <?php
 function ajouterReferent($nouveauReferent) {
-   // Vérifier si des données ont été soumises
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Capturer les données du formulaire
+
     $nouvelleDonnee = array(
         "mat" => $_POST["mat"],
         "nom" => $_POST["nom"],
@@ -302,27 +298,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         "promo" => $_POST["promo"]
     );
 
-    // Chemin du fichier JSON
+  
     $cheminFichierJSON = '/var/www/html/project/modeles/promotionaire0.json';
-
-    // Lire le contenu du fichier JSON
     $contenuFichierJSON = file_get_contents($cheminFichierJSON);
-
-    // Convertir le contenu JSON en tableau PHP
     $donneesExistantes = json_decode($contenuFichierJSON, true);
-
-    // Ajouter les nouvelles données au tableau PHP
     $donneesExistantes[] = $nouvelleDonnee;
-
-    // Convertir le tableau PHP en JSON
     $donneesMisesAJourJSON = json_encode($donneesExistantes);
-
-    // Écrire les données JSON dans le fichier, en écrasant le fichier existant
     file_put_contents($cheminFichierJSON, $donneesMisesAJourJSON);
-
-    // Rediriger l'utilisateur vers une page de confirmation ou autre
-    // header("Location: confirmation.php");
-
 }
 
 }
@@ -374,6 +356,7 @@ for ($i = 0; $i < $count; $i++) {
     if ($referent['promo'] === $promotionNumber) {
      
         $referentiel = $referent['libelle'];
+    
          
 
       

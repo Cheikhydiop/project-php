@@ -4,7 +4,6 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 
-
 ?>
 
                   
@@ -67,8 +66,9 @@ if (session_status() == PHP_SESSION_NONE) {
                 <div class="tableau">
 
 
+                
             <?php
-
+      
 
 
 
@@ -105,7 +105,7 @@ if (session_status() == PHP_SESSION_NONE) {
                                         
                     if($_SESSION['connect']==1){
                     
-                       
+                   
                         $presents= presence_filter($_POST["status"]);
                   
                          if(isset($_POST["status"])){
@@ -134,12 +134,13 @@ if (session_status() == PHP_SESSION_NONE) {
                       
                        }
 
-
+            
                      
 
 
 
                        if($_SESSION['connect']==0){
+                        
                       
                           $presents= presence_filter2($_POST["status"]);
                         //   var_dump($presents);
@@ -171,7 +172,7 @@ if (session_status() == PHP_SESSION_NONE) {
  
                   
                    <?php foreach($presents as $student ) :  ?>
-                        
+                   
                         <tr>
                             <td class="mat">&nbsp; <?=$student["mat"]?></td>
                             <td>&nbsp;&nbsp;<?=$student["nom"]?></td>
@@ -262,3 +263,23 @@ if (session_status() == PHP_SESSION_NONE) {
     
 </body>
 </html>
+<?php
+// session_start();
+// echo "Kkkk";
+// var_dump($_SESSION['last_activity']);
+
+// // Vérifier l'activité de la session et déconnecter si inactif
+// if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 10)) {
+//     echo "entre";
+//     // var_dump($_SESSION['last_activity']);
+//     session_unset();
+//     session_destroy();
+//     header("Location: http://www.cheikh.diop:8001/project/public/auth.php"); // Redirection vers la page de connexion
+//     exit();
+// }
+
+// // Mettre à jour le temps de dernière activité
+// $_SESSION['last_activity'] = time();
+
+
+?>

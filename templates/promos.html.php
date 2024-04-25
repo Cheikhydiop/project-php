@@ -95,12 +95,10 @@ border-collapse: collapse;
                             // $result = findStudentsAndReferentByPromotion($promotionNumber);
                             // var_dump($result);
                           echo"<pre>";
-                                   var_dump(  $_SESSION['resultat_promotion']);
+                                  //  var_dump(  $_SESSION['resultat_promotion']);
                           echo"</pre>";
 
-                                
 
-                            // Convertir le résultat en JSON
                             $jsonResult = json_encode( $_SESSION['resultat_promotion'] );
 
                             // Nom du fichier
@@ -181,23 +179,20 @@ if (isset($_POST['button_id'])) {
 
         buttons.forEach(button => {
             button.addEventListener('click', function () {
-                // Désactive tous les boutons
+            
                 buttons.forEach(btn => btn.classList.remove('active'));
-                // Active le bouton cliqué
                 this.classList.add('active');
-                // Envoie l'ID du bouton à PHP pour enregistrement
                 const buttonId = this.getAttribute('id');
-                // Effectuer une requête AJAX pour envoyer l'ID au script PHP
-                // ...
+
             });
         });
     });
   </body>
 </html>
 
-// Vérifie si l'ID du bouton a été reçu
+
 if (isset($_POST['button_id'])) {
-    // Récupère l'ID du bouton cliqué
+   
     $buttonId = $_POST['button_id'];
     
 }

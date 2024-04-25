@@ -4,41 +4,14 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-// Vérifier si le formulaire a été soumis
+  
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    // Vérifier si le bouton toggle est coché
     $valeur = isset($_POST['toggle']) ? 1 : 0;
-
-    // Stocker la valeur dans la session
     $_SESSION['toggle_valeur'] = $valeur;
-    var_dump(  $_SESSION['toggle_valeur']);
-    // $tempsAttente = 5; // en secondes
-
-    // Rediriger vers une autre page après le délai spécifié
-    // header("http://www.cheikh.diop:8001/project/public/?page=referent");// Assurez-vous de terminer le script après la redirection
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ajouter un nouveau référentiel</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-          integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-          crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        /* Votre CSS */
-    </style>
-</head>
-<body>
-    <!-- Votre HTML -->
-</body>
-</html>
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -105,7 +78,25 @@ input:checked + .slider:before {
   -ms-transform: translateX(26px);
   transform: translateX(26px);
 }
-        </style>
+
+
+
+#images {
+    position: relative;
+    left:10px;
+}
+
+#uploaded-image {
+    border-radius: 50%;
+width: 96px;
+height: 89px;
+object-fit: cover;
+position: relative;
+left: 77px;
+}
+
+
+ </style>
 
 </head>
 
@@ -124,20 +115,31 @@ input:checked + .slider:before {
         <?php 
            
        if(isset($_POST)){
-        var_dump(  $_SESSION['toggle_valeur']);
+        // var_dump(  $_SESSION['toggle_valeur']);
        }
             
           ?>
 
 <?php
-// Vérifier si des données ont été soumises
 
-      
+
+
+
+
+
+
+
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    if( $_SESSION['toggle_valeur']==1){
+  $extension= explode('.',$_POST['file']);
+ var_dump($extension[1]);
+if($extension[1] == 'png'  || $extension[1] == 'jpg' || $extension[1] != 'jpeg'  ){
+    $msg="format image incorrect";
+
+}
+
 
 
  
@@ -148,7 +150,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         "day" => $_POST["day"],
         "email" => $_POST["email"],
         "genre" => $_POST["genre"],
-        "tel" => $_POST["tel"],
+        "tel" => $_SESSION['toggle_valeur'],
         "status" => $_POST["status"],
         "referentiel" => $_POST["referentiel"],
         "img" => $_POST["img"],
@@ -167,34 +169,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    
 }
 
-}
+
 ?>
 
 
+ <?php
+$referentiel_deja_vu = array();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <?php
-$referentiel_deja_vu = array(); // Tableau pour stocker les référentiels déjà rencontrés
 
 foreach(promoStude() as $referent):
-    // Vérifier si le référentiel a déjà été rencontré
-    if (!in_array($referent["referentiel"], $referentiel_deja_vu)) {
-        // Si le référentiel n'a pas encore été rencontré, l'afficher et le stocker dans le tableau
+
+    if  ((!in_array($referent["referentiel"], $referentiel_deja_vu)) && (!empty($referent["referentiel"]) && !empty($referent["tel"])   )) {
+  
         $referentiel_deja_vu[] = $referent["referentiel"];
+
 ?>
         <div class="box">
             <div class="head">
@@ -215,13 +203,14 @@ foreach(promoStude() as $referent):
 endforeach;
 ?>
 
- 
+
             
         </div>
         <div class="add-ref flex">
             <form class="box" method="POST" action="">
                      <div class="head">
                          <span>Nouveau Referentiel</span>
+                        
                      </div>
                      <div class="head-content flex-col">
                     <label for="libelle">Libelle</label>
@@ -230,6 +219,7 @@ endforeach;
                             <i class="fa-regular fa-user"></i>
                         </span>
                         <input type="text" name="referentiel" placeholder="Entrer le libelle">
+
                     </div>
                     <label for="desc">Description</label>
                     <div class="saisie">
@@ -238,41 +228,64 @@ endforeach;
                         </span>
                         <textarea name="promo" cols="30" placeholder="Entrer le Description"></textarea>
                     </div>
-                  <form method="POST" >
-                    <label for="in" style = 'visiblity:hidden ' ></label>
-                        <input id="in" type="checkbox" id="toggle" name="toggle" <?php if(isset($_SESSION['toggle_valeur']) && $_SESSION['toggle_valeur'] == 1) echo "checked"; ?>>
-                        <input type="submit" value="Enregistrer">
-                    </form>
+                  
+                  
+                  
+                  
+                <form method="POST" >
 
-                <label class="switch">
-                <!-- <input type="checkbox" id="toggleButton"> -->
-                <input type="checkbox" id="toggle" name="toggle" <?php if(isset($_SESSION['toggle_valeur']) && $_SESSION['toggle_valeur'] == 1) echo "checked"; ?>>
+                     <label for="in" style = 'visiblity:hidden ' ></label>
+                     <!-- <input id="in" type="checkbox" id="toggle" name="toggle" <?php if(isset($_SESSION['toggle_valeur']) && $_SESSION['toggle_valeur'] == 1) echo "checked"; ?>> -->
+                 
 
-               
-                <span class="slider"></span>
+                    <label class="switch">
+                        <!-- <input type="checkbox" id="toggleButton"> -->
+                    <input type="checkbox" id="toggle" name="toggle" <?php if(isset($_SESSION['toggle_valeur']) && $_SESSION['toggle_valeur'] == 1) echo "checked"; ?>>
+                         
+                            
+                    <span class="slider"></span>
+                   
+                    </label> 
+                    <div id="images">
+                        <input type="file" name="file">
+                        <img id="uploaded-image" src="#" alt="Uploaded Image">
+                    </div>
+
+                    <?php if(isset($msg)): ?>
+              <div style="background-color: #fa8072; color: #333; padding: 10px; border: 1px solid #ccc;text-:center;">
+               <?=$msg?>
+              </div>
+         <?php endif; ?>
+                    <button type="submit" name="valider" value="Enregistrer">Enregistrer</button>
+                                
+                    </div>
+             </form>
 
 
-   
-                </label> 
-                <button type="submit" name="valider" value="Enregistrer">Enregistrer</button>
-                        
-                </div>
-            </form>
+
         </div>
     </section>
     <footer id="footer" class="flex-cc">
         <!-- <div class="content">&copy; Sonatel Academy</div> -->
     </footer> 
    
+    <script>
+    // Pour afficher l'image téléchargée
+const fileInput = document.querySelector('input[type="file"]');
+const uploadedImage = document.getElementById('uploaded-image');
 
-    <form method="POST">
-    <label for="toggle">Toggle Button</label>
-    
-</form>
+fileInput.addEventListener('change', function() {
+    const file = this.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            uploadedImage.src = e.target.result;
+        }
+        reader.readAsDataURL(file);
+    }
+});
+</script>
 
-
-
-    
 </body>
 
 

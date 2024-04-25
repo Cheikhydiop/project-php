@@ -169,7 +169,8 @@
       }
       input{
           height: 5vh;
-          width: 40%;
+          height: 5vh;
+          width: 82%;
          position: relative;
          left: 69px;
          margin: 15px;
@@ -253,3 +254,10 @@
       background-color: green;
       color: white;
    }
+   input[type="submit"]{
+    width: 15%;
+    background-color: green;
+    color: white;
+    position: relative;
+    left: 165px;
+ }

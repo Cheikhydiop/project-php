@@ -2,19 +2,7 @@
 if (session_status() == PHP_SESSION_NONE) {
    session_start();
 }
-// // include ("auth.php");
-// // auth_user();
-// if(!$_SESSION['connect']){
-//    header("location:auth.php");
-//  exit;
-// }
-
-// if($_SESSION['connect']){
-//   header("location:http://www.cheikh.diop:8001/project/public/?page=presence");
-//   exit;
-// }
-
-
+// include("auto_deconnexion.php");
 include('/var/www/html/project/modeles/front-data.php');
 
 
@@ -33,6 +21,7 @@ $fichier=[
 
     $page=$_GET["page"];
       if(in_array($page,$fichier)){
+         // include("auto_deconexion.php");
            include("../templates/layout.html.php");
              require_once '../templates/'.$page.'.html.php';
         }else{

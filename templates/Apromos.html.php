@@ -1,3 +1,51 @@
+<?php
+// Vérifier si le formulaire a été soumis
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Récupérer les données du formulaire
+    $libelle = $_POST["libelle"];
+    $promo = $_POST["promo"];
+    $debut = $_POST["debut"];
+    $fin = $_POST["fin"];
+    $referentiels = $_POST["referentiels"];
+
+    // Convertir les dates en objets DateTime pour calculer la différence
+    $date_debut = new DateTime($debut);
+    $date_fin = new DateTime($fin);
+    
+    // Calculer la différence en mois
+    $difference = $date_debut->diff($date_fin);
+    $difference_en_mois = $difference->m + ($difference->y * 12);
+
+    // Vérifier si la différence est supérieure à 4 mois
+    if ($difference_en_mois >= 4) {
+        // Vérifier si le fichier CSV existe
+        $fichier_csv = "/var/www/html/project/modeles/promotions.csv";
+        $nouvelle_ligne = "$libelle,$promo,$debut,$fin,\"$referentiels\"";
+        if (!file_exists($fichier_csv)) {
+            // Si le fichier n'existe pas, créer le fichier et ajouter l'entête
+            $entete = "libelle,promo,debut,fin,referentiels";
+            $fichier = fopen($fichier_csv, "a");
+            fwrite($fichier, $entete . PHP_EOL);
+            fclose($fichier);
+        }
+
+        // Ajouter une nouvelle ligne au fichier CSV
+        $fichier = fopen($fichier_csv, "a");
+        fwrite($fichier, $nouvelle_ligne . PHP_EOL);
+        fclose($fichier);
+        // header("location:http://www.cheikh.diop:8001/project/public/?page=promos");
+
+        echo "Les données ont été ajoutées avec succès au fichier CSV.";
+    } else {
+        echo "Erreur : La différence entre la date de début et la date de fin doit être supérieure ou égale à 4 mois.";
+    }
+}
+?>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -72,12 +120,12 @@
                    
                     <div class="tableau"  >
                         <form  method="POST">
-                        <div><input type="text" placeholder="titre Promo" name="libelle"></div>
+                        <div><input type="text"  id='tp'placeholder="titre Promo" name="libelle"></div>
                         <div>logo</div>
                         <span><input type="date" name="debut"></span>
                         <span><input type="date" name="fin"></span>
                         <span><input type="button" value="Ajouter Referentiel"></span> 
-                        <span  class="lef"><input type="submit" value="Creer Promotion"  name="validerP"></span>
+                        <span  class="lef"><input type="submit"  value="Creer Promotion"  name="validerP"></span>
                         </form>
                       
                     </div>

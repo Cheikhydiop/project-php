@@ -3,6 +3,7 @@ if (session_status() == PHP_SESSION_NONE) {
   session_start();
 }
 include('/var/www/html/project/modeles/front-data.php');
+
 $msg;
 if(isset($_POST['valider'])) {
 
@@ -38,6 +39,7 @@ if(empty($_POST['email']) && empty($_POST['password'])){
             $nom[]=$personne['nom'];
             $prenom[]=$personne['prenom'];
             $img[]=$personne['img'];
+        
     
           
         } elseif($_POST['email'] == "admin" && $_POST['password']== "admin" ){
@@ -52,7 +54,7 @@ if(empty($_POST['email']) && empty($_POST['password'])){
         $_SESSION['nom']=$nom; 
         $_SESSION['img']=$img; 
         $_SESSION['prenom']=$prenom; 
-        
+        $_SESSION['last_activity'] = time();
         $_SESSION['connect'] = 0;
 
         header("Location: http://www.cheikh.diop:8001/project/public/?page=presence");
@@ -60,6 +62,7 @@ if(empty($_POST['email']) && empty($_POST['password'])){
     } elseif($_POST['email'] == "admin" && $_POST['password']== "admin" ){
       
         $_SESSION['connect'] = 1;
+        $_SESSION['last_activity'] = time();
         header("Location: http://www.cheikh.diop:8001/project/public/?page=presence");
         exit();
     } else {
@@ -67,6 +70,12 @@ if(empty($_POST['email']) && empty($_POST['password'])){
         $msg4="login ou password incorrect";
     }
 }
+
+if(isset($_GET['msg'])){
+  $auto= $_GET['msg'];
+
+ }
+
 ?>
 
 
@@ -153,15 +162,30 @@ img{
   position: relative;
   left: 50px;
 }
+.auto{
+
+
+position: relative;
+left: -14px;
+top: -226px;
+}
+
   </style>
 </head>
 <body>
 
   <div class="my-div">   
+      
 
-          <div class="div2">
+          <div class="deconnexion">
             
-            <div class="photos"><img src="logo.png" width="30%" alt=""></div>
+          <div class="photos"><img src="logo.png" width="10%" alt=""><?php if(isset($auto)): ?>
+              <div class="auto">
+               <?=$auto?>
+              </div>
+         <?php endif; ?>
+       
+        </div>
           <div class="input">
              <form action="" method="POST">
                    <input type="hidden"  name="form">
@@ -177,7 +201,7 @@ img{
                     <p>Email Addresse <b style="color: red;">*</b> </p><br>
                     <input type="text" placeholder="Email Addresse" name="email" value="<?= $_POST['email']?>"><br><br>
         <?php if(isset($msg1)): ?>
-              <div style="background-color: #fa8072; color: #333; padding: 10px; border: 1px solid #ccc;">
+              <div style="background-color: #fa8072; color: #333; padding: 5px; border: 1px solid #ccc;">
                <?=$msg1?>
               </div>
          <?php endif; ?>
@@ -190,7 +214,7 @@ img{
           <div class="button"><button type="submit" name="valider"><b>LOGIN</b></button></div>
           </form>
           <?php if(isset($msg4)): ?>
-              <div style="background-color: #fa8072; color: #333; padding: 10px; border: 1px solid #ccc;">
+              <div style="background-color: #fa8072; color: #333; padding: 5px; border: 1px solid #ccc;">
                <?=$msg4?>
               </div>
          <?php endif; ?>
@@ -201,10 +225,4 @@ img{
   </div>
 </body>
 </html>
-
-
-
-
-
-
 
